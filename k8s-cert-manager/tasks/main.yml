@@ -1,0 +1,24 @@
+---
+# tasks file for k8s-cert-manager
+- name: Check if cert-manager is already Installed
+  shell: "helm list --all-namespaces | grep -we {{ namespace }} | grep cert-manager | wc -l"
+  register: helm_status
+
+- name: Helm Status
+  debug:
+   msg: "{% if helm_status.stdout == 1 %} Failed !! - cert-manager is already Installed!{% else %} cert-manager is not Installed !!{% endif %}"
+  failed_when: helm_status.stdout == "1"
+
+- name: Add Helm Repo
+  command: helm repo add jetstack https://charts.jetstack.io
+
+- name: Upgrade Helm Repo
+  command: helm repo update
+
+- name: Install cert-manager with CRD's
+  script: "helm.sh {{ cert_manager_version }} {{ namespace }}"
+  register: helm_install_status
+
+- name: Helm Installation Log
+  debug: 
+    msg: "{{ helm_install_status }}"
