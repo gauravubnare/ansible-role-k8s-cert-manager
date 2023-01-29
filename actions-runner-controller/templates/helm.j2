@@ -1,0 +1,6 @@
+helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version {{ cert_manager_version }} \
+  --set installCRDs=true
