@@ -16,7 +16,7 @@
   command: helm repo update
 
 - name: Install actions-runner-controller with CRD's
-  script: "helm.sh {{ namespace }}"
+  script: "helm.sh {{ namespace }} {{ github_token }}"
   register: helm_install_status
 
 - name: Helm Installation Log

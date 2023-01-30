@@ -1,4 +1,4 @@
 ---
-# vars file for k8s-cert-manager
-cert_manager_version: v1.11.0
+# vars file for actions-runner-controller
+github_token: v1.11.0
 namespace: test

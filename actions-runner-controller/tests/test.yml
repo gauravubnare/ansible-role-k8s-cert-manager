@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - k8s-cert-manager
+    - actions-runner-controller
